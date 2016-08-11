@@ -1,0 +1,7 @@
+*.pyc
+.pythonhistory
+progress.log
+databases
+errors
+sessions
+uploads

@@ -1,0 +1,7 @@
+{{for contestant in contestants:}}
+  <img width="200px" src ="{{=URL('download', args=contestant['photo'])}}" /><br/>
+  Code: {{=contestant['code']}} </br>
+  Name: {{=contestant['name']}} </br>
+  Vote: {{=contestant['votes']}} / {{=total}}</br>
+  <hr/>
+{{pass}}
