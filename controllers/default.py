@@ -1,16 +1,36 @@
 from datetime import datetime
 
+def check_ticket_pin(form):
+
+    result = db(db.vote.ticket_no == form.vars.ticket_no).select(db.vote.ticket_no.count().with_alias('count')).first();
+    if result['count'] > 0 :
+        # voted already
+        form.errors.ticket_no = 'You have already voted'
+    else:
+        result = db(db.ticket.ticket_no == form.vars.ticket_no).select(db.ticket.ticket_no.count().with_alias('count')).first();
+        if result['count'] > 0 :
+            # valid ticket_no
+            result = db((db.ticket.ticket_no == form.vars.ticket_no) &
+                        (db.ticket.ticket_pin == form.vars.ticket_pin)).select(db.ticket.ticket_no.count().with_alias('count')).first();
+
+            if result['count'] == 0 :
+               # invalid ticket_no & ticket_pin
+               form.errors.ticket_pin = 'Invalid PIN'
+        else:
+            # invalid ticket_no
+            form.errors.ticket_no = 'Invalid Ticket No'
+    return
+
 def index():
 
     form=SQLFORM(db.vote)
     form.vars.voted_datetime = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
 
-    if form.process().accepted:
-       response.flash = 'vote accepted'
+    if form.accepts(request.vars, session, onvalidation=check_ticket_pin):
+        response.flash = 'Thank you for voting'
     elif form.errors:
-       response.flash = 'form has errors'
-    else:
-       response.flash = 'please fill out the form'
+        if form.errors.contestant_id : form.errors.contestant_id = 'Select a value'
+        response.flash = 'Check form error'
 
     return dict(form = form)
 
