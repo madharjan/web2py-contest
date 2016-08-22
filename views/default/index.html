@@ -1,21 +1,62 @@
 {{extend 'layout.html'}}
 
-<h1>Best Dress Competition</h1>
+<h1>Teej Celebration Competition and Prizes</h1>
 
-{{=INPUT(_type='button',_value='Click to Vote', _onclick='location.href="'+ URL('default', 'vote') +'"')}}
+<h3>Competition Prize</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Best Dress Contest</th>
+      <th>Prize</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1st Prize</td>
+      <td>SGD 200 Cash</td>
+    </tr>
+    <tr>
+      <td>2nd Prize</td>
+      <td>SGD 100 Cash</td>
+    </tr>
+    <tr>
+      <td>3rd Prize</td>
+      <td>SGD  50 Cash</td>
+    </tr>
+  </tbody>
+</table>
+<small>If two or more contestant gets same no. of votes to hold prize position, the prize shall be split among the position winners</small>
+<br/>
 <br/>
 
-<h3>Prizes</h3>
-<p>1st Prize: SGD 200 Cash</p>
-<p>2nd Prize: SGD 100 Cash</p>
-<p>3rd Prize: SGD  50 Cash</p>
+{{=INPUT(_type='button',_value='Click to Vote for Best Dress Competition', _onclick='location.href="'+ URL('default', 'vote') +'"')}}
 <br/>
 
-<h4>Program Schedule</h4>
-<p>Contestant Registration: 03 Sept 2016 05:00pm to 07:00pm</p>
-<p>Voting Period: 03 Sept 2016, 07:00pm to 09:30pm</p>
-<p>Prize and Lucky draw : 03 Sept 2016, 10:00pm</p>
+
+<h3>Program Schedule</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Program</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Contestant Registration</td>
+      <td>{{=datetime.strftime(registration['start'], '%d %b %Y, %I:%M %p')}} to {{=datetime.strftime(registration['end'], '%I:%M %p')}}</td>
+    </tr>
+    <tr>
+      <td>Voting Period</td>
+      <td><strong>{{=datetime.strftime(voting['start'], '%d %b %Y, %I:%M %p')}} to {{=datetime.strftime(voting['end'], '%I:%M %p')}}</strong></td>
+    </tr>
+    <tr>
+      <td>Prize and Lucky draw </td>
+      <td>{{=datetime.strftime(lucky_draw['start'], '%d %b %Y, %I:%M %p')}} to {{=datetime.strftime(lucky_draw['end'], '%I:%M %p')}}</td>
+    </tr>
+  </tbody>
+</table>
 <br/>
 
-{{=INPUT(_type='button',_value='Click to Vote', _onclick='location.href="'+ URL('default', 'vote') +'"')}}
+{{=INPUT(_type='button',_value='Click to Vote for Best Dress Competition', _onclick='location.href="'+ URL('default', 'vote') +'"')}}
 <br/>

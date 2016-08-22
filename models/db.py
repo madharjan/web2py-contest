@@ -131,6 +131,8 @@ auth.settings.reset_password_requires_verification = True
 # -------------------------------------------------------------------------
 # auth.enable_record_versioning(db)
 
+from datetime import datetime
+
 db.define_table('contestant',
                 Field('code', 'string', unique=True),
                 Field('name', 'string', unique=True),
@@ -146,6 +148,11 @@ db.define_table('vote',
 db.define_table('ticket',
                 Field('ticket_no', 'string', unique=True),
                 Field('ticket_pin', 'string'))
+
+db.define_table('settings',
+                Field('name', 'string', unique=True),
+                Field('start_time', 'datetime'),
+                Field('end_time', 'datetime'))
 
 db.contestant.code.requires = IS_NOT_IN_DB(db, db.contestant.code)
 db.contestant.name.requires = IS_NOT_IN_DB(db, db.contestant.name)
