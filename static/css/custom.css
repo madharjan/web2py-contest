@@ -1,0 +1,18 @@
+.carousel{
+    #background: #2f4357;
+    margin-top: 20px;
+}
+.carousel .item img{
+    margin: 0 auto;
+}
+.carousel-caption {
+  background-color: rgba(0,0,0,.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  padding: 0 0 10px 25px;
+  color: #fff;
+  text-align: left;
+}

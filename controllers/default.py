@@ -1,5 +1,8 @@
 from datetime import datetime
 
+def call():
+    return service()
+
 def check_ticket_pin(form):
 
     result = db(db.vote.ticket_no == form.vars.ticket_no).select(db.vote.ticket_no.count().with_alias('count')).first();
@@ -35,6 +38,8 @@ def index():
     return dict(form = form)
 
 
+
+@service.json
 def result():
 
     votes = db().select(db.vote.contestant_id.count().with_alias('total')).first()
