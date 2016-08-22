@@ -23,6 +23,10 @@ def check_ticket_pin(form):
 
 def index():
 
+    registration = dict()
+    voting = dict()
+    lucky_draw = dict()
+
     result = db().select(db.settings.ALL)
     for row in result:
         if row.name == "registration":
@@ -44,7 +48,7 @@ def vote():
 
     voting = db(db.settings.name == 'voting').select(db.settings.start_time, db.settings.end_time).first();
     now = datetime.now()
-    if now < voting.start_time:
+    if  now < voting.start_time:
         response.flash = "Voting has not started yet, it will start at " + datetime.strftime(voting.start_time, '%d %b %Y, %I:%M %p')
     elif now > voting.end_time:
         response.flash = "Voting has ended already, it ended at " + datetime.strftime(voting.end_time, '%d %b %Y, %I:%M %p')

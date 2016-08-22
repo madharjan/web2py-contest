@@ -32,6 +32,50 @@
 {{=INPUT(_type='button',_value='Click to Vote for Best Dress Competition', _onclick='location.href="'+ URL('default', 'vote') +'"')}}
 <br/>
 
+{{
+  if 'start' in registration:
+    registration_start = datetime.strftime(registration['start'], '%d %b %Y, %I:%M %p')
+  else:
+    registration_start = ""
+}}
+{{pass}}
+{{
+  if 'end' in registration:
+    registration_end = datetime.strftime(registration['end'], '%d %b %Y, %I:%M %p')
+  else:
+    registration_end = ""
+}}
+{{pass}}
+{{
+  if 'start' in voting:
+    voting_start = datetime.strftime(voting['start'], '%d %b %Y, %I:%M %p')
+  else:
+    voting_start = ""
+}}
+{{pass}}
+{{
+
+  if 'end' in voting:
+    voting_end = datetime.strftime(voting['end'], '%d %b %Y, %I:%M %p')
+  else:
+    voting_end = ""
+}}
+{{pass}}
+{{
+  if 'start' in lucky_draw:
+    lucky_draw_start = datetime.strftime(lucky_draw['start'], '%d %b %Y, %I:%M %p')
+  else:
+    lucky_draw_start = ""
+}}
+{{pass}}
+{{
+
+  if 'end' in lucky_draw:
+    lucky_draw_end = datetime.strftime(lucky_draw['end'], '%d %b %Y, %I:%M %p')
+  else:
+    lucky_draw_end = ""
+}}
+{{pass}}
 
 <h3>Program Schedule</h3>
 <table class="table">
@@ -44,15 +88,15 @@
   <tbody>
     <tr>
       <td>Contestant Registration</td>
-      <td>{{=datetime.strftime(registration['start'], '%d %b %Y, %I:%M %p')}} to {{=datetime.strftime(registration['end'], '%I:%M %p')}}</td>
+      <td>{{=registration_start}} to {{=registration_end)}}</td>
     </tr>
     <tr>
       <td>Voting Period</td>
-      <td><strong>{{=datetime.strftime(voting['start'], '%d %b %Y, %I:%M %p')}} to {{=datetime.strftime(voting['end'], '%I:%M %p')}}</strong></td>
+      <td><strong>{{=voting_start}} to {{=voting_end}}</strong></td>
     </tr>
     <tr>
       <td>Prize and Lucky draw </td>
-      <td>{{=datetime.strftime(lucky_draw['start'], '%d %b %Y, %I:%M %p')}} to {{=datetime.strftime(lucky_draw['end'], '%I:%M %p')}}</td>
+      <td>{{=lucky_draw_start}} to {{=lucky_draw_end}}</td>
     </tr>
   </tbody>
 </table>

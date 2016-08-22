@@ -1,9 +1,12 @@
 {{extend 'layout.html'}}
-<h1>Contestants</h1>
+<h1>Contestants for Best Dress Competition</h1>
 
 {{=LOAD('default','result.load',times='infinity', timeout=interval, ajax=True)}}
 
 <h2>Vote</h2>
+<small>One vote is allowed per entrance ticket. Vote cannot be changed after submit</small>
+<br/>
+
 {{=form.custom.begin}}
 Select <strong>Contestant</strong>: <div>{{=form.custom.widget.contestant_id}}</div>
 Enter <strong>Ticket No.</strong>: <div>{{=form.custom.widget.ticket_no}}</div>
