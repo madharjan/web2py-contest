@@ -31,5 +31,6 @@ response.google_analytics_id = None
 
 response.menu = [
     (T('Home'), False, URL('default', 'index'), []),
+    (T('Vote'), False, URL('default', 'vote'), []),
     (T('Result'), False, URL('default', 'result'), [])
 ]

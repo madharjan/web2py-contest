@@ -1,47 +1,10 @@
 {{extend 'layout.html'}}
+<h3>To vote visit http://nepalesesociety.org.sg/</h3>
+<p>Fill in the <strong>Voting Form</strong>
+a) Select <strong>Contestant</strong>,
+b) Enter <strong>Ticket No</strong> &amp; <strong>PIN</strong>
+c) Click <strong>Submit</strong></p>
 
-<h3>To vote visit</h3>
-<h3>http://nepalesesociety.org.sg/</h3>
-<p>Fill in the <strong>Voting Form</strong> Selecting <strong>Contestant</strong>, </br>
-Enter <strong>Ticket No</strong> &amp; <strong>PIN</strong> and Click <strong>Submit</strong></p>
+<h1>Voting Results</h1>
 
-<h1>Contestants</h1>
-
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Carousel indicators -->
-    <ol class="carousel-indicators">
-{{i=0}}
-{{for contestant in contestants:}}
-  {{if i== 0:}}
-      <li data-target="#myCarousel" data-slide-to="{{=i}}" class="active"></li>
-  {{else:}}
-      <li data-target="#myCarousel" data-slide-to="{{=i}}" ></li>
-  {{pass}}
-  {{i=i+1}}
-{{pass}}
-    </ol>
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-{{i=0}}
-{{for contestant in contestants:}}
-  {{if i== 0:}}
-      <div class="item active">
-  {{else:}}
-      <div class="item ">
-  {{pass}}
-        <img width="680" height="380" src ="{{=URL('download', args=contestant['photo'])}}" />
-        <div class="carousel-caption">
-          <h2>{{=contestant['code']}} : {{=contestant['name']}} &nbsp; &nbsp; &nbsp; {{=contestant['votes']}} / {{=total}}</h2>
-        </div>
-      </div>
-  {{i=i+1}}
-  {{pass}}
-    </div>
-    <!-- Controls -->
-   <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-   </a>
-   <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-   </a>
-</div>
+{{=LOAD('default','result.load',times='infinity', timeout=interval, ajax=True)}}

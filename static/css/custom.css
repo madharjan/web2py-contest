@@ -3,7 +3,9 @@
     margin-top: 20px;
 }
 .carousel .item img{
-    margin: 0 auto;
+  border:1px solid #eee;
+  margin: 0 auto;
+  padding:10px;
 }
 .carousel-caption {
   background-color: rgba(0,0,0,.5);

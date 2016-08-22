@@ -1,13 +1,21 @@
 {{extend 'layout.html'}}
-<h1>Contestants</h1>
 
-{{=LOAD('default','result.load',times='infinity', timeout=3000, ajax=True)}}
+<h1>Best Dress Competition</h1>
 
-<h2>Vote</h2>
-{{=form.custom.begin}}
-Select Contestant: <div>{{=form.custom.widget.contestant_id}}</div>
-Enter Ticket No.: <div>{{=form.custom.widget.ticket_no}}</div>
-Enter Ticket PIN: <div>{{=form.custom.widget.ticket_pin}}</div>
-{{=form.custom.submit}}
-{{=form.custom.end}}
+{{=INPUT(_type='button',_value='Click to Vote', _onclick='location.href="'+ URL('default', 'vote') +'"')}}
+<br/>
+
+<h3>Prizes</h3>
+<p>1st Prize: SGD 200 Cash</p>
+<p>2nd Prize: SGD 100 Cash</p>
+<p>3rd Prize: SGD  50 Cash</p>
+<br/>
+
+<h4>Program Schedule</h4>
+<p>Contestant Registration: 03 Sept 2016 05:00pm to 07:00pm</p>
+<p>Voting Period: 03 Sept 2016, 07:00pm to 09:30pm</p>
+<p>Prize and Lucky draw : 03 Sept 2016, 10:00pm</p>
+<br/>
+
+{{=INPUT(_type='button',_value='Click to Vote', _onclick='location.href="'+ URL('default', 'vote') +'"')}}
 <br/>

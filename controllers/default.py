@@ -26,6 +26,13 @@ def check_ticket_pin(form):
 
 def index():
 
+
+    return dict()
+
+def vote():
+
+    contestants = db().select(db.contestant.code.count().with_alias('count')).first()
+
     form=SQLFORM(db.vote)
     form.vars.voted_datetime = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
 
@@ -35,11 +42,9 @@ def index():
         if form.errors.contestant_id : form.errors.contestant_id = 'Select a value'
         response.flash = 'Check form error'
 
-    return dict(form = form)
+    return dict(form = form, interval = contestants.count * 3000 + 3000)
 
 
-
-@service.json
 def result():
 
     votes = db().select(db.vote.contestant_id.count().with_alias('total')).first()
@@ -61,8 +66,7 @@ def result():
                        votes = row.count)
         contestants.append(contestant)
 
-    return dict(contestants = contestants, total = votes.total)
-
+    return dict(contestants = contestants, total = votes.total, interval = len(contestants) * 3000 + 3000)
 
 def download():
 
