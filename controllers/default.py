@@ -58,7 +58,7 @@ def vote():
         if form.errors.contestant_id : form.errors.contestant_id = 'Select a value'
         response.flash = 'Check form error'
 
-    return dict(form = form, interval = contestants.count * 3000 + 3000)
+    return dict(form = form, interval = contestants.count * 3000 + 3000, now = now)
 
 
 def result():
