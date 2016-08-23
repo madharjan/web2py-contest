@@ -41,7 +41,7 @@
 {{pass}}
 {{
   if 'end' in registration:
-    registration_end = datetime.strftime(registration['end'], '%d %b %Y, %I:%M %p')
+    registration_end = datetime.strftime(registration['end'], '%I:%M %p')
   else:
     registration_end = ""
 }}
@@ -56,7 +56,7 @@
 {{
 
   if 'end' in voting:
-    voting_end = datetime.strftime(voting['end'], '%d %b %Y, %I:%M %p')
+    voting_end = datetime.strftime(voting['end'], '%I:%M %p')
   else:
     voting_end = ""
 }}
@@ -71,7 +71,7 @@
 {{
 
   if 'end' in lucky_draw:
-    lucky_draw_end = datetime.strftime(lucky_draw['end'], '%d %b %Y, %I:%M %p')
+    lucky_draw_end = datetime.strftime(lucky_draw['end'], '%I:%M %p')
   else:
     lucky_draw_end = ""
 }}
@@ -81,8 +81,8 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Program</th>
-      <th>Time</th>
+      <th>Programme</th>
+      <th>Date Time</th>
     </tr>
   </thead>
   <tbody>
