@@ -22,7 +22,15 @@ from gluon.contrib.appconfig import AppConfig
 # -------------------------------------------------------------------------
 # once in production, remove reload=True to gain full speed
 # -------------------------------------------------------------------------
-myconf = AppConfig(reload=True)
+# myconf = AppConfig(reload=True)
+
+import os
+config_path = os.path.join(request.folder, 'private')
+if request.is_local:
+    myconf = AppConfig('%s/appconfig-dev.ini' % config_path, reload=True)
+else:
+    myconf = AppConfig('%s/appconfig.ini' % config_path, reload=False)
+
 
 if not request.env.web2py_runtime_gae:
     # ---------------------------------------------------------------------
@@ -134,23 +142,23 @@ auth.settings.reset_password_requires_verification = True
 from datetime import datetime
 
 db.define_table('contestant',
-                Field('code', 'string', unique=True),
-                Field('name', 'string', unique=True),
+                Field('code', 'string', length=255, unique=True),
+                Field('name', 'string', length=255, unique=True),
                 Field('photo', 'upload'),
                 format = '%(code)s - %(name)s')
 
 db.define_table('vote',
                 Field('contestant_id','reference contestant'),
-                Field('ticket_no', 'string', unique=True),
-                Field('ticket_pin', 'string'),
+                Field('ticket_no', 'string', length=255, unique=True),
+                Field('ticket_pin', 'string', length=255),
                 Field('voted_datetime', 'datetime'))
 
 db.define_table('ticket',
-                Field('ticket_no', 'string', unique=True),
-                Field('ticket_pin', 'string'))
+                Field('ticket_no', 'string', length=255, unique=True),
+                Field('ticket_pin', 'string', length=255))
 
 db.define_table('settings',
-                Field('name', 'string', unique=True),
+                Field('name', 'string', length=255, unique=True),
                 Field('start_time', 'datetime'),
                 Field('end_time', 'datetime'))
 
